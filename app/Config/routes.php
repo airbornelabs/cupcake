@@ -28,7 +28,8 @@
  */
 	Router::connect('/login', array('controller' => 'admin', 'action' => 'login'));
 	Router::connect('/dashboard', array('controller' => 'admin', 'action' => 'dashboard'));
-	Router::connect('/dashboard/pages', array('controller' => 'admin', 'action' => 'pages'));
+	Router::connect('/dashboard/pages', array('controller' => 'pages', 'action' => 'pages'));
+	Router::connect('/dashboard/pages/add', array('controller' => 'pages', 'action' => 'add'));
 	
 
 /**

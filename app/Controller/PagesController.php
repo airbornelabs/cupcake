@@ -29,32 +29,14 @@ App::uses('AppController', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class AdminController extends AppController {
+class PagesController extends AppController {
 
-	public function login() {
-		// if already loggedin redirect to dashboard
-		if($this->session->check('User.loggedin')) {
-			$this->redirect('/dashboard');
-		}
+	public function pages() {
 
-		// catch POST variables
-		if($this->request->isPost()) {
-			$user = $this->Users->find('all', array(
-				'conditions' => array(
-					'Users.username' => $this->request['data']['login']['username'],
-					'Users.password' => md5($this->request['data']['login']['password'])
-					)
-				)
-			);
-		}
+		$this->render('/Admin/pages');
+	}
 
-		// if user is found
-		if(!empty($user)) {
-			// write session variables && redirect to dashboard with flash
-			$this->session->write('User.name', $this->request['data']['login']['username']);
-			$this->session->write('User.loggedin', TRUE);
-			$this->session->setFlash('Logged in!');
-			$this->redirect('/dashboard');
-		}
+	public function add() {
+		
 	}
 }

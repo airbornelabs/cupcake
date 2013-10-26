@@ -32,5 +32,43 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	
+	public $components = array('session');
+	public $helpers = array('Form');
+	public $uses = array('Users');
 
+	public function beforeFilter() {
+		// if no user session is set && not already on login page
+		if(!$this->session->check('User.loggedin') && $this->here != '/login') {
+			$this->session->setFlash('Login required to access dashboard');
+			$this->redirect('/login');
+		}
+	}
+
+	public function login() {
+		// if already loggedin redirect to dashboard
+		if($this->session->check('User.loggedin')) {
+			$this->redirect('/dashboard');
+		}
+
+		// catch POST variables
+		if($this->request->isPost()) {
+			$user = $this->Users->find('all', array(
+				'conditions' => array(
+					'Users.username' => $this->request['data']['login']['username'],
+					'Users.password' => md5($this->request['data']['login']['password'])
+					)
+				)
+			);
+		}
+
+		// if user is found
+		if(!empty($user)) {
+			// write session variables && redirect to dashboard with flash
+			$this->session->write('User.name', $this->request['data']['login']['username']);
+			$this->session->write('User.loggedin', TRUE);
+			$this->session->setFlash('Logged in!');
+			$this->redirect('/dashboard');
+		}
+	}
 }
