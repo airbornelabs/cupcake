@@ -66,9 +66,15 @@ class PagesController extends AppController {
 			$this->redirect('/dashboard/pages');
 		}
 
-		
+		// catch post data
+		if($this->request->isPost()) {
+			// if record was successfully updated, redirect with flash
+			if($this->Pages->save($this->request->data['page'])) {
+				$this->session->setFlash($this->request['data']['page']['title'].' has been updated!');
+				$this->redirect('/dashboard/pages');
+			}
+		}
 
-		
 
 		$this->set('page', $page);
 		$this->render('/Admin/Pages/edit');
