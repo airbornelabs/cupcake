@@ -31,9 +31,12 @@
 	Router::connect('/login', array('controller' => 'admin', 'action' => 'login'));
 	Router::connect('/logout', array('controller' => 'admin', 'action' => 'logout'));
 	Router::connect('/dashboard', array('controller' => 'admin', 'action' => 'dashboard'));
+	Router::connect('/dashboard/users', array('controller' => 'users', 'action' => 'users'));
+	Router::connect('/dashboard/users/add', array('controller' => 'users', 'action' => 'create'));
+	Router::connect('/dashboard/users/edit/*', array('controller' => 'users', 'action' => 'update'));
 	Router::connect('/dashboard/pages', array('controller' => 'pages', 'action' => 'pages'));
-	Router::connect('/dashboard/pages/add', array('controller' => 'pages', 'action' => 'add'));
-	Router::connect('/dashboard/pages/edit/*', array('controller' => 'pages', 'action' => 'edit'));
+	Router::connect('/dashboard/pages/add', array('controller' => 'pages', 'action' => 'create'));
+	Router::connect('/dashboard/pages/edit/*', array('controller' => 'pages', 'action' => 'update'));
 	
 
 /**

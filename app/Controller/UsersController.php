@@ -29,54 +29,47 @@ App::uses('AppController', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class PagesController extends AppController {
+class UsersController extends AppController {
 
-	public function pages() {
-		$pages = $this->Pages->find('all');
+	public function users() {
 
-		$this->set('pages', $pages);
-		$this->render('/Admin/Pages/pages');
+		// query for all users in database
+		$this->set('users', $this->Users->find('all'));
+		$this->render('/Admin/Users/users');
 	}
 
 	public function create() {
-		// catch post data
-		if($this->request->isPost()) {
-			// if successfully saved to the database, redirect with flash
-			if($this->Pages->save($this->request->data['page'])) {
-				$this->session->setFlash($this->request['data']['page']['title'].' has been saved!');
-				$this->redirect('/dashboard/pages');
-			}
-		}
 
-		$this->render('/Admin/Pages/add');
+		$this->render('/Admin/Users/add');
 	}
 
 	public function update($id=null) {
-		// query for page based on ID
-		$page = $this->Pages->find('all', array(
+
+		$user = $this->Users->find('all', array(
 			'conditions' => array(
-				'Pages.id' => $id
+				'Users.id' => $id
 				)
 			)
 		);
 
-		// if no page was found redirect with flash
-		if(empty($page)) {
-			$this->session->setFlash('Page could not be found');
-			$this->redirect('/dashboard/pages');
+		if(empty($user)) {
+			$this->session->setFlash('User cannot be found');
+			$this->redirect('/dashboard');
 		}
 
-		// catch post data
 		if($this->request->isPost()) {
-			// if record was successfully updated, redirect with flash
-			if($this->Pages->save($this->request->data['page'])) {
-				$this->session->setFlash($this->request['data']['page']['title'].' has been updated!');
-				$this->redirect('/dashboard/pages');
+			if($this->Users->save($this->request->data['user'])){
+				$this->session->setFlash('User has been updated!');
+				$this->redirect('/dashboard');
 			}
 		}
 
 
-		$this->set('page', $page);
-		$this->render('/Admin/Pages/edit');
+		$this->set('user', $user);
+		$this->render('/Admin/Users/edit');
+	}
+
+	public function destroy() {
+
 	}
 }
