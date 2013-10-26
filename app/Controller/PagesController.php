@@ -66,6 +66,10 @@ class PagesController extends AppController {
 			$this->redirect('/dashboard/pages');
 		}
 
+		
+
+		
+
 		$this->set('page', $page);
 		$this->render('/Admin/Pages/edit');
 	}
