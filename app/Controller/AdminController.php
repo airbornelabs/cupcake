@@ -57,4 +57,8 @@ class AdminController extends AppController {
 			$this->redirect('/dashboard');
 		}
 	}
+
+	public function dashboard() {
+		
+	}
 }

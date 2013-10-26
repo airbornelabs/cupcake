@@ -41,12 +41,29 @@ class PagesController extends AppController {
 	public function add() {
 
 		if($this->request->isPost()) {
-			if($this->Pages->save($this->request->data['Page'])) {
-				$this->session->setFlash($this->request['data']['Page']['title'].' has been saved!');
+			if($this->Pages->save($this->request->data['page'])) {
+				$this->session->setFlash($this->request['data']['page']['title'].' has been saved!');
 				$this->redirect('/dashboard/pages');
 			}
 		}
 
 		$this->render('/Admin/Pages/add');
+	}
+
+	public function edit($id) {
+		$page = $this->Pages->find('all', array(
+			'conditions' => array(
+				'Pages.id' => $id
+				)
+			)
+		);
+
+		if(empty($page)) {
+			$this->session->setFlash('Page could not be found');
+			$this->redirect('/dashboard/pages');
+		}
+
+		$this->set('page', $page);
+		$this->render('/Admin/Pages/edit');
 	}
 }

@@ -30,6 +30,7 @@
 	Router::connect('/dashboard', array('controller' => 'admin', 'action' => 'dashboard'));
 	Router::connect('/dashboard/pages', array('controller' => 'pages', 'action' => 'pages'));
 	Router::connect('/dashboard/pages/add', array('controller' => 'pages', 'action' => 'add'));
+	Router::connect('/dashboard/pages/edit/*', array('controller' => 'pages', 'action' => 'edit'));
 	
 
 /**
