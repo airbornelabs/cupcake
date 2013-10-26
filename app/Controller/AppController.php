@@ -38,8 +38,8 @@ class AppController extends Controller {
 	public $uses = array('Users', 'Pages');
 
 	public function beforeFilter() {
-		// if no user session is set && not already on login page
-		if(!$this->session->check('User.loggedin') && $this->here != '/login') {
+		// if no user session is set && url is set to an admin page
+		if(!$this->session->check('User.loggedin') && strstr($this->here, '/dashboard')) {
 			$this->session->setFlash('Login required to access dashboard');
 			$this->redirect('/login');
 		}

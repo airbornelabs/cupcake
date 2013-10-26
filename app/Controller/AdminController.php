@@ -58,7 +58,15 @@ class AdminController extends AppController {
 		}
 	}
 
+	public function logout() {
+		$this->session->destroy();
+		$this->session->setFlash('You have been logged out!');
+		$this->redirect('/');
+	}
+
 	public function dashboard() {
-		
+		$total['Pages'] = $this->Pages->find('count');
+
+		$this->set('total', $total);
 	}
 }
