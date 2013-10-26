@@ -35,7 +35,7 @@ class AppController extends Controller {
 	
 	public $components = array('session');
 	public $helpers = array('Form');
-	public $uses = array('Users');
+	public $uses = array('Users', 'Pages');
 
 	public function beforeFilter() {
 		// if no user session is set && not already on login page

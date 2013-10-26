@@ -32,11 +32,21 @@ App::uses('AppController', 'Controller');
 class PagesController extends AppController {
 
 	public function pages() {
+		$pages = $this->Pages->find('all');
 
-		$this->render('/Admin/pages');
+		$this->set('pages', $pages);
+		$this->render('/Admin/Pages/pages');
 	}
 
 	public function add() {
-		
+
+		if($this->request->isPost()) {
+			if($this->Pages->save($this->request->data['Page'])) {
+				$this->session->setFlash($this->request['data']['Page']['title'].' has been saved!');
+				$this->redirect('/dashboard/pages');
+			}
+		}
+
+		$this->render('/Admin/Pages/add');
 	}
 }
