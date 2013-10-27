@@ -35,12 +35,4 @@ class UsersModel extends Model {
 	public $name = 'Users';
 	public $useTable = 'users';
 
-	public function beforeSave($options = array()) {
-		die(print_r($this->data));
-		if(isset($this->data['user']['password']))
-		{
-			md5($this->data['user']['password']));
-		}
-	}
-
 }

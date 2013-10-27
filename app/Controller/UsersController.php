@@ -45,6 +45,7 @@ class UsersController extends AppController {
 
 	public function update($id=null) {
 
+		// query for user
 		$user = $this->Users->find('all', array(
 			'conditions' => array(
 				'Users.id' => $id
@@ -52,12 +53,20 @@ class UsersController extends AppController {
 			)
 		);
 
+		// if no user is found, redirect
 		if(empty($user)) {
 			$this->session->setFlash('User cannot be found');
 			$this->redirect('/dashboard');
 		}
 
 		if($this->request->isPost()) {
+
+			// md5 password
+			if(!empty($this->request->data['user']['password'])) {
+				$this->request->data['user']['password'] = md5($this->request->data['user']['password']);
+			}
+
+			// update user
 			if($this->Users->save($this->request->data['user'])){
 				$this->session->setFlash('User has been updated!');
 				$this->redirect('/dashboard');
