@@ -32,6 +32,7 @@ App::uses('AppController', 'Controller');
 class AdminController extends AppController {
 
 	public function login() {
+
 		// if already loggedin redirect to dashboard
 		if($this->session->check('User.loggedin')) {
 			$this->redirect('/dashboard');

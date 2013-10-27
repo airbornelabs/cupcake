@@ -38,6 +38,12 @@ class AppController extends Controller {
 	public $uses = array('Users', 'Pages');
 
 	public function beforeFilter() {
+
+		// set layout to admin
+		if(strstr($this->here, '/dashboard') || $this->here == '/login') {
+			$this->layout = 'admin';
+		}
+
 		// if no user session is set && url is set to an admin page
 		if(!$this->session->check('User.loggedin') && strstr($this->here, '/dashboard')) {
 			$this->session->setFlash('Login required to access dashboard');
