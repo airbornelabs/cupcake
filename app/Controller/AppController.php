@@ -35,7 +35,7 @@ class AppController extends Controller {
 	
 	public $components = array('session');
 	public $helpers = array('Form');
-	public $uses = array('Users', 'Pages');
+	public $uses = array('Users', 'Pages', 'Posts');
 
 	public function beforeFilter() {
 
@@ -86,7 +86,7 @@ class AppController extends Controller {
 				)
 			)
 		);
-		
+
 		if(!empty($pages)) {
 			return $pages;
 		}

@@ -32,9 +32,8 @@ App::uses('AppController', 'Controller');
 class PagesController extends AppController {
 
 	public function pages() {
-		$pages = $this->Pages->find('all');
 
-		$this->set('pages', $pages);
+		$this->set('pages', $this->Pages->find('all'));
 		$this->render('/Admin/Pages/pages');
 	}
 

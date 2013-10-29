@@ -1,8 +1,9 @@
 <?php
 /**
- * Static content controller.
+ * Application model for CakePHP.
  *
- * This file will render views from views/admin/
+ * This file is application-wide model file. You can put all
+ * application-wide model-related methods here.
  *
  * PHP 5
  *
@@ -15,33 +16,24 @@
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Controller
+ * @package       app.Model
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-App::uses('AppController', 'Controller');
+
+App::uses('Model', 'Model');
 
 /**
- * Static content controller
+ * Application model for Cake.
  *
- * Override this controller by placing a copy in controllers directory of an application
+ * Add your application-wide methods in the class below, your models
+ * will inherit them.
  *
- * @package       app.Controller
- * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
+ * @package       app.Model
  */
-class PostsController extends AppController {
+class PostsModel extends Model {
+	public $name = 'Posts';
+	public $useTable = 'posts';
 
-	public function posts() {
 
-		$this->set('posts', $this->Posts->find('all'));
-		$this->render('/Admin/Posts/posts');
-	}
-
-	public function create() {
-	
-	}
-
-	public function update($id=null) {
-		
-	}
 }
