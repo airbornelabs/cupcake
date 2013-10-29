@@ -28,7 +28,9 @@
 		</header>
 
 		<div id="content">
-			<?php echo $this->Session->flash(); ?>
+			<!-- <div class="alert alert-info"> -->
+				<?php echo $this->Session->flash(); ?>
+			<!-- </div>			 -->
 
 			<?php echo $this->fetch('content'); ?>
 		</div>

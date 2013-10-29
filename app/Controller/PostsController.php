@@ -29,9 +29,17 @@ App::uses('AppController', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class BlogController extends AppController {
+class PostsController extends AppController {
 
-	public function home() {
-		$this->set('pages', $this->activePages());
+	public function pages() {
+	
+	}
+
+	public function create() {
+	
+	}
+
+	public function update($id=null) {
+		
 	}
 }

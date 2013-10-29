@@ -77,4 +77,18 @@ class AppController extends Controller {
 			$this->redirect('/dashboard');
 		}
 	}
+
+	public function activePages() {
+		// query for all pages that are 'ACTIVE'
+		$pages = $this->Pages->find('all', array(
+			'conditions' => array(
+				'Pages.status' => 1
+				)
+			)
+		);
+		
+		if(!empty($pages)) {
+			return $pages;
+		}
+	}
 }
