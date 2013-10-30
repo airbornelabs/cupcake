@@ -39,6 +39,15 @@ class PostsController extends AppController {
 
 	public function create() {
 	
+		// catch POST variables
+		if($this->request->isPost()) {
+			// if successfully saved to the database, redirect with flash
+			if($this->Posts->save($this->request->data['post'])) {
+				$this->session->setFlash($this->request['data']['post']['title'].' has been saved!');
+				$this->redirect('/dashboard/posts');
+			}
+		}
+		
 		$this->render('/Admin/Posts/add');
 	}
 
