@@ -38,6 +38,7 @@
 	Router::connect('/dashboard/pages/add', array('controller' => 'pages', 'action' => 'create'));
 	Router::connect('/dashboard/pages/edit/*', array('controller' => 'pages', 'action' => 'update'));
 	Router::connect('/dashboard/posts', array('controller' => 'posts', 'action' => 'posts'));
+	Router::connect('/dashboard/posts/add', array('controller' => 'posts', 'action' => 'create'));
 	
 
 /**

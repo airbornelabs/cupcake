@@ -39,6 +39,7 @@ class PostsController extends AppController {
 
 	public function create() {
 	
+		$this->render('/Admin/Posts/add');
 	}
 
 	public function update($id=null) {
