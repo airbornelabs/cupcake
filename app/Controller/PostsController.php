@@ -47,11 +47,28 @@ class PostsController extends AppController {
 				$this->redirect('/dashboard/posts');
 			}
 		}
-		
+
 		$this->render('/Admin/Posts/add');
 	}
 
 	public function update($id=null) {
-		
+
+		// query the posts table based on id
+		$post = $this->Posts->find('all', array(
+			'conditions' => array(
+				'Posts.id' => $id
+				)
+			)
+		);
+
+		// if no post was found, redirect with flash
+		if(empty($post)) {
+			$this->session->setFlash('Sorry no post was found');
+			$this->redirect('/dashboard/posts');
+		}
+
+		$this->set('post', $post);
+		$this->render('/Admin/Posts/edit');
+
 	}
 }
